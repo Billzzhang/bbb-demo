@@ -16,6 +16,9 @@
 require 'capybara/rspec'
 require 'capybara/dsl'
 
+SERVER = "https://bbb.bill.blindside-dev.com/bigbluebutton/api"
+SECRET = "I1srupllZAut4ZpwrJwV5CDZ4nLwy7VsYE3EaBg"
+
 RSpec.configure do |config|
   config.include Capybara::DSL
   # rspec-expectations config goes here. You can use an alternate

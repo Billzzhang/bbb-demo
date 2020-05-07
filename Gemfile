@@ -58,3 +58,5 @@ gem 'httparty'
 gem 'nokogiri'
 
 gem 'rspec', '~> 3.0'
+
+gem 'travis'

@@ -4,8 +4,7 @@ require 'digest'
 require 'httparty'
 require 'nokogiri'
 
-SERVER = "https://bbb.bill.blindside-dev.com/bigbluebutton/api"
-SECRET = "I1srupllZAut4ZpwrJwV5CDZ4nLwy7VsYE3EaBg"
+
 
 feature "All recordings are shown" do
     scenario "verify all recordings displayed" do
