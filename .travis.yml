@@ -1,6 +1,13 @@
 language: ruby
+sudo: required
 rvm:
 - 2.7.1
 script:
   - bundle install
   - bundle exec rspec
+before_install:
+  - sudo apt-get update
+  - wget https://github.com/mozilla/geckodriver/releases/download/v0.20.1/geckodriver-v0.20.1-linux64.tar.gz
+  - tar -xzf geckodriver-v0.20.1-linux64.tar.gz
+  - sudo cp geckodriver /usr/bin
+
