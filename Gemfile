@@ -64,3 +64,5 @@ gem 'nokogiri'
 gem 'rspec', '~> 3.0'
 
 gem 'travis'
+
+gem 'bcrypt', '~>3.1.7'
