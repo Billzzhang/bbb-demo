@@ -18,6 +18,15 @@ test:
   password: password
   timeout: 5000
   
+production:
+  host: ''
+  adapter: postgresql
+  encoding: utf8
+  database: bbb-demo_production
+  pool: 5
+  username: <%= ENV['bbb-demo_DATABASE_USER'] %>
+  password: <%= ENV['bbb-demo_DATABASE_PASSWORD'] %>  
+
 default: &default
   adapter: sqlite3
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
