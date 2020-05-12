@@ -29,6 +29,7 @@ class MeetingController < ApplicationController
         createsha1 = Digest::SHA1.hexdigest createcall
         createLink = ENV['SERVER']+"/create?name=#{id}&meetingID=#{id}&record=true&checksum="+createsha1
         response = HTTParty.get(createLink)
+        puts response
         createInfo = Nokogiri::XML(response.body)
         moderatorPW = createInfo.at_xpath("//moderatorPW").text()
 
