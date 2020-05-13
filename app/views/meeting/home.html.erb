@@ -12,17 +12,29 @@
         <%= link_to "Log In", login_path %>
     <% end %>
     <h1> Join a Meeting </h1>
+
     <%= form_with(url: "/create", method: "post") do %>
+
+        <% @meetings.each do |meeting| %>
+            <%= radio_button_tag(:meetingID, meeting.meetingID, false) %>
+            <%= label_tag(:meetingID, meeting.meetingID) %>
+        <% end %>
+
         <%= label_tag(:name, "Name: ") %>
-        <%= text_field_tag(:name) %>
+        <% if current_user %>
+            <%= text_field_tag(:name, current_user.username) %>
+        <% else %>
+            <%= text_field_tag(:name) %>
+        <% end %>
         <%= submit_tag("Create") %>
+        <%= submit_tag("Join a meeting", :formaction => "/join") %>
     <% end %>
 
     <h2> All recordings </h2>
     <%= form_with(url: "/delete", method: "post") do %>
         <% @recordings.each do |recording| %>
             <%= check_box_tag("id[]", recording.id) %>
-            <%= link_to recording.name, recording.url %>
+            <%= link_to(recording.name, recording.url) %>
             <br/>
         <% end %>
         <br/>
