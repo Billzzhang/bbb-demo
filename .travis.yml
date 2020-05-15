@@ -1,9 +1,10 @@
-language: ruby
-sudo: required
-addons:
-  postgresql: "9.5.21"
 services:
   - postgresql
+addons:
+  postgresql: "9.5.21"
+language: ruby
+sudo: required
+cache: bundler
 rvm:
 - 2.7.1
 script:
