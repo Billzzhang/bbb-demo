@@ -57,6 +57,7 @@ class MeetingController < ApplicationController
     def join
         # Join the meeting
         if (params.has_key?(:meetingID))
+            puts params[:meetingID]
             meeting = Meeting.find_by(:meetingID => params[:meetingID])
             joincall = "joinfullName=#{params[:name]}&meetingID=#{meeting.meetingID}&password=#{meeting.attendeePW}"+ENV['SECRET']
             joinsha1 = Digest::SHA1.hexdigest joincall
