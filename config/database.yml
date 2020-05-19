@@ -1,35 +1,30 @@
-# PostgreSQL
-
 development:
-  adapter: postgresql
-  encoding: unicode
-  database: bbb-demo_development
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: bill
-  password: password
-  timeout: 5000
-  port: 5432
-
+    adapter: postgresql
+    encoding: unicode
+    database: bbb-demo_development
+    pool: '<%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>'
+    username: bill
+    password: password
+    timeout: 5000
+    port: 5432
 test:
-  adapter: postgresql
-  encoding: unicode
-  database: bbb-demo_test
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: bill
-  password: password
-  timeout: 5000
-  port: 5432
-  
+    adapter: postgresql
+    encoding: unicode
+    database: bbb-demo_test
+    pool: '<%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>'
+    username: bill
+    password: password
+    timeout: 5000
+    port: 5432
 production:
-  host: ''
-  adapter: postgresql
-  encoding: utf8
-  database: bbb-demo_production
-  pool: 5
-  username: <%= ENV['bbb-demo_DATABASE_USER'] %>
-  password: <%= ENV['bbb-demo_DATABASE_PASSWORD'] %>  
-
-default: &default
-  adapter: postgresql
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+    host: ""
+    adapter: postgresql
+    encoding: utf8
+    database: bbb-demo_production
+    pool: 5
+    username: '<%= ENV[''bbb-demo_DATABASE_USER''] %>'
+    password: '<%= ENV[''bbb-demo_DATABASE_PASSWORD''] %>'
+default:
+    adapter: postgresql
+    pool: '<%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>'
+    timeout: 5000
