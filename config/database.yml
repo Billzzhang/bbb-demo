@@ -1,33 +1,32 @@
 # PostgreSQL
 
 development:
-  adapter: postgresql
+  <<: *default
   encoding: unicode
   database: bbb-demo_development
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: bill
   password: password
   timeout: 5000
 
 test:
-  adapter: postgresql
+  <<: *default
   encoding: unicode
-  database: test
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  database: bbb-demo_test
   username: bill
   password: password
   timeout: 5000
   
 production:
+  <<: *default
   host: ''
   adapter: postgresql
   encoding: utf8
   database: bbb-demo_production
   pool: 5
-  username: <%= ENV['bbb-demo_DATABASE_USER'] %>
-  password: <%= ENV['bbb-demo_DATABASE_PASSWORD'] %>  
+  username: bill
+  password: password 
 
 default: &default
-  adapter: sqlite3
+  adapter: postgresql
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
