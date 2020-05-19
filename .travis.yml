@@ -18,5 +18,7 @@ before_install:
   - tar -xzf geckodriver-v0.20.1-linux64.tar.gz
   - sudo cp geckodriver /usr/bin
 before_script:
-  - cp config/database.yml.travis config/database.yml
+  - sudo apt-get update
+  - cp config/database.yml.travis config/database.
+  - psql -c 'create database bbb-demo_test;' -U postgres
 
