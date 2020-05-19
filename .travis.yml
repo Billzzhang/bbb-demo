@@ -9,6 +9,7 @@ rvm:
 - 2.7.1
 script:
   - bundle install
+  - rake db:create
   - rake db:migrate
   - bundle exec rspec
 before_install:
