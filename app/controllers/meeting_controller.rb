@@ -1,6 +1,7 @@
 require 'digest'
 require 'httparty'
 require 'nokogiri'
+require 'resolv-replace'
 class MeetingController < ApplicationController
     def home
         getRecordingCall = "getRecordings"+ENV['SECRET']
