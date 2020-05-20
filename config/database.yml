@@ -22,8 +22,8 @@ production:
     encoding: utf8
     database: bbb-demo_production
     pool: 5
-    username: '<%= ENV[''bbb-demo_DATABASE_USER''] %>'
-    password: '<%= ENV[''bbb-demo_DATABASE_PASSWORD''] %>'
+    username: bill
+    password: password
 default:
     adapter: postgresql
     pool: '<%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>'
