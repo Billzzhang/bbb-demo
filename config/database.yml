@@ -11,7 +11,7 @@ development:
 test:
     adapter: postgresql
     encoding: unicode
-    database: bbb-demo_test
+    database: travis_ci_test
     pool: '<%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>'
     username: bill
     password: password
