@@ -6,7 +6,7 @@ class MeetingController < ApplicationController
         getRecordingCall = "getRecordings"+ENV['SECRET']
         getRecordingsha1 = Digest::SHA1.hexdigest getRecordingCall
         getRecordingLink = ENV['SERVER']+"/getRecordings?checksum="+getRecordingsha1
-        response = HTTParty.get(getRecordingLink)
+        response = HTTParty.get(getRecordingLink, verify: true)
         recordingsXML = Nokogiri::XML(response.body).xpath("//recording")
         @recordings = []
         for recording in recordingsXML do
@@ -29,7 +29,7 @@ class MeetingController < ApplicationController
         createcall = "createname=#{id}&meetingID=#{id}&record=true"+ENV['SECRET']
         createsha1 = Digest::SHA1.hexdigest createcall
         createLink = ENV['SERVER']+"/create?name=#{id}&meetingID=#{id}&record=true&checksum="+createsha1
-        response = HTTParty.get(createLink)
+        response = HTTParty.get(createLink, verify: true)
         createInfo = Nokogiri::XML(response.body)
         moderatorPW = createInfo.at_xpath("//moderatorPW").text()
         attendeePW = createInfo.at_xpath("//attendeePW").text()
@@ -50,7 +50,7 @@ class MeetingController < ApplicationController
         deletecall = "deleteRecordingsrecordID=#{deleteIDs}"+ENV['SECRET']
         deletesha1 = Digest::SHA1.hexdigest deletecall
         deleteLink = ENV['SERVER']+"/deleteRecordings?recordID=#{deleteIDs}&checksum="+deletesha1
-        response = HTTParty.get(deleteLink)
+        response = HTTParty.get(deleteLink, verify: true)
         redirect_to "/"
     end
 
