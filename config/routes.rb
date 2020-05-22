@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   post '/create', to: 'meeting#create', as: 'create'
   post '/delete', to: 'meeting#delete', as: 'delete'
   post '/join', to: 'meeting#join', as: 'join'
+
+  get '/auth/:provider/callback', to: 'sessions#omniauth', as: 'omniauth'
   
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
