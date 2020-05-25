@@ -71,3 +71,6 @@ gem 'bcrypt', '~>3.1.7'
 
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+
+gem 'webmock'
+gem 'safe_yaml'

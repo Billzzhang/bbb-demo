@@ -13,22 +13,53 @@
 # it.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+require 'webmock/rspec'
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
 
   config.before(:each) do
-    stub_request(:any, /#{"http:\/\/bbb.example.com\/bigbluebutton\/api"}/)
-    .with(
-      headers:
-      {
-        'Accept': '*/*',
-        'Accept-Encoding': 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-        'User-Agent': 'Ruby',
-      }
-    )
-    .to_return(status: 200, body: "", headers: {})
+    stub_request(:any, /#{"https:\/\/bbb.bill.blindside-dev.com\/bigbluebutton\/api\/.*"}/)
+      .with(
+        headers:
+        {
+          'Accept': '*/*',
+          'Accept-Encoding': 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'User-Agent': 'Ruby',
+        }
+      )
+      .to_return(status: 200, body: "
+        <response>
+          <returncode>SUCCESS</returncode>
+        </response>", headers: {})
+    stub_request(:any, /#{"https:\/\/bbb.bill.blindside-dev.com\/bigbluebutton\/api\/create?.*"}/)
+      .with(
+        headers:
+        {
+          'Accept': '*/*',
+          'Accept-Encoding': 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'User-Agent': 'Ruby'
+        }
+      )
+      .to_return(status: 200, body: "
+        <response>
+          <returncode>SUCCESS</returncode>
+          <meetingID>Test</meetingID>
+          <internalMeetingID>640ab2bae07bedc4c163f679a746f7ab7fb5d1fa-1531155809613</internalMeetingID>
+          <parentMeetingID>bbb-none</parentMeetingID>
+          <attendeePW>ap</attendeePW>
+          <moderatorPW>mp</moderatorPW>
+          <createTime>1531155809613</createTime>
+          <voiceBridge>70757</voiceBridge>
+          <dialNumber>613-555-1234</dialNumber>
+          <createDate>Mon Jul 09 17:03:29 UTC 2018</createDate>
+          <hasUserJoined>false</hasUserJoined>
+          <duration>0</duration>
+          <hasBeenForciblyEnded>false</hasBeenForciblyEnded>
+          <messageKey>duplicateWarning</messageKey>
+          <message>This conference was already in existence and may currently be in progress.</message>
+        </response>", headers: {'Content-Type': 'text/yaml'})
   end
 
   config.expect_with :rspec do |expectations|

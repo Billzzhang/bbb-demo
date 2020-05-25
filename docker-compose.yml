@@ -3,10 +3,14 @@ services:
   db:
     image: postgres
     container_name: db.postgres
-    env_file:
-      - .env
+    environment:
+      POSTGRES_PASSWORD: password
+    # env_file:
+    #   - .env
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
+    ports:
+      - '5432'
   web:
     build: .
     restart: always
@@ -17,5 +21,7 @@ services:
       - "3000:3000"
     depends_on:
       - db
-    env_file:
-      .env
+    environment:
+      PG_PASSWORD: password
+    # env_file:
+    #   .env
