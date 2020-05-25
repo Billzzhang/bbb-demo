@@ -9,14 +9,11 @@ default: &default
 development:
     <<: *default
     database: bbb-demo_development
-    url: <%= ENV['DATABASE_URL'].gsub('?', '_development?' ) %>
 test:
     <<: *default
     database: travis_ci_test
-    url: <%= ENV['DATABASE_URL'].gsub('?', '_test?' ) %>
 production:
     <<: *default
     encoding: utf8
     database: bbb-demo_production
-    url: <%= ENV['DATABASE_URL'].gsub('?', '_production?' ) %>
 
