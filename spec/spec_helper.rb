@@ -21,7 +21,7 @@ RSpec.configure do |config|
   # assertions if you prefer.
 
   config.before(:each) do
-    stub_request(:any, /https://bbb.bill.blindside-dev.com/bigbluebutton/api/.*/)
+    stub_request(:any, /#{"https:\/\/bbb.bill.blindside-dev.com\/bigbluebutton\/api\/.*"}/)
       .with(
         headers:
         {
@@ -34,7 +34,7 @@ RSpec.configure do |config|
         <response>
           <returncode>SUCCESS</returncode>
         </response>", headers: {})
-    stub_request(:any, /https://bbb.bill.blindside-dev.com/bigbluebutton/api/create?.*/)
+    stub_request(:any, /#{"https:\/\/bbb.bill.blindside-dev.com\/bigbluebutton\/api\/create?.*"}/)
       .with(
         headers:
         {
