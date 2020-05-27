@@ -1,19 +1,15 @@
+# frozen_string_literal: true
+
 class Recording
-    def initialize(id, url, name)
-        @id = id
-        @url = url
-        @name = name
-    end
+  def initialize(id, url, name)
+    @id = id
+    @url = url
+    @name = name
+  end
 
-    def id
-        @id
-    end
+  attr_reader :id
 
-    def url
-        @url
-    end
+  attr_reader :url
 
-    def name
-        @name
-    end
+  attr_reader :name
 end
