@@ -1,19 +1,23 @@
 default: &default
     adapter: postgresql
     encoding: unicode
+    host: ''
     username: <%= ENV['POSTGRES_USER'] %>
-    password: <%= ENV['PG_PASSWORD'] %>
-    host: db
+    password: <%= ENV['POSTGRES_PASSWORD'] %>
     pool: '<%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>'
     timeout: 5000
+
 development:
     <<: *default
     database: bbb-demo_development
 test:
     <<: *default
     database: travis_ci_test
+    host: ''
+
 production:
     <<: *default
     encoding: utf8
+    host: ''
     database: bbb-demo_production
 
