@@ -1,5 +1,6 @@
 services:
   - postgresql
+  - docker
 addons:
   postgresql: "9.5"
 language: ruby
@@ -8,6 +9,8 @@ cache: bundler
 rvm:
 - 2.7.1
 script:
+  - make test
+  - make image
   - bundle install
   - rake db:create RAILS_ENV=test
   - rake db:migrate RAILS_ENV=test
@@ -21,4 +24,8 @@ before_script:
   - sudo apt-get update
   - cp config/database.yml.travis config/database.yml
   - psql -c 'create database travis_ci_test;' -U postgres
-
+deploy:
+  provider: script
+  script: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD && make push-image
+  on:
+    branch: master
